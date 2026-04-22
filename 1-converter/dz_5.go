@@ -86,7 +86,7 @@ func raschet() float64 {
 	case val == "RUB" && val_chel == "USD":
 		a = (1 / usd_rub) * float64(chislo)
 	case val == "RUB" && val_chel == "EUR":
-		a = ((1 / usd_eur) * usd_eur) * float64(chislo)
+		a = ((1 / usd_rub) * usd_eur) * float64(chislo)
 	}
 	return a
 }
