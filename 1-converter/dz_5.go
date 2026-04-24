@@ -83,23 +83,30 @@ func vvod_chel(scanner *bufio.Scanner) (string, error) {
 }
 
 func raschet(chislo int, val string, val_chel string) float64 {
-	var a float64
-	const usd_eur = 0.8564
-	const usd_rub = 76.97
+	//var a float64
+	rates := make(map[string]float64, 3)
+	rates["USD"] = 1.0
+	rates["EUR"] = 0.8564
+	rates["RUB"] = 76.97
 
-	switch {
-	case val == "USD" && val_chel == "EUR":
-		a = usd_eur * float64(chislo)
-	case val == "USD" && val_chel == "RUB":
-		a = usd_rub * float64(chislo)
-	case val == "EUR" && val_chel == "RUB":
-		a = (usd_rub / usd_eur) * float64(chislo)
-	case val == "EUR" && val_chel == "USD":
-		a = (1 / usd_eur) * float64(chislo)
-	case val == "RUB" && val_chel == "USD":
-		a = (1 / usd_rub) * float64(chislo)
-	case val == "RUB" && val_chel == "EUR":
-		a = ((1 / usd_rub) * usd_eur) * float64(chislo)
-	}
-	return a
+	//	const usd_eur = 0.8564
+	//	const usd_rub = 76.97
+
+	result := float64(chislo) * rates[val] / rates[val_chel]
+	return result
+	//	switch {
+	//	case val == "USD" && val_chel == "EUR":
+	//		a = usd_eur * float64(chislo)
+	//	case val == "USD" && val_chel == "RUB":
+	//		a = usd_rub * float64(chislo)
+	//	case val == "EUR" && val_chel == "RUB":
+	//		a = (usd_rub / usd_eur) * float64(chislo)
+	//	case val == "EUR" && val_chel == "USD":
+	//		a = (1 / usd_eur) * float64(chislo)
+	//	case val == "RUB" && val_chel == "USD":
+	//		a = (1 / usd_rub) * float64(chislo)
+	//	case val == "RUB" && val_chel == "EUR":
+	//		a = ((1 / usd_rub) * usd_eur) * float64(chislo)
+	//	}
+	//	return a
 }
